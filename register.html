@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Register - Sansha’s Documents</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script defer src="script.js"></script>
+  <style>
+    body {
+      background: #121212;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .register-container {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 70px;
+      border-radius: 20px;
+      box-shadow: 0 0 15px #00dfd8;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .register-container h2 {
+      margin-bottom: 20px;
+      font-size: 24px;
+      color: #00dfd8;
+    }
+
+    .input-wrapper {
+      position: relative;
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    .input-wrapper label {
+      display: block;
+      margin-bottom: 0px;
+      font-size: 14px;
+    }
+
+    .input-wrapper input {
+      width: 70%;
+      padding: 0px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid #444;
+      border-radius: 10px;
+      color: #fff;
+    }
+
+    .input-wrapper input:focus {
+      outline: none;
+      border-color: #00dfd8;
+    }
+
+    .neon-button {
+      background: #00dfd8;
+      color: #000;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 16px;
+      transition: 0.3s ease;
+      margin-top: 10px;
+    }
+
+    .neon-button:hover {
+      background: #0ff;
+      box-shadow: 0 0 10px #0ff;
+    }
+
+    .error {
+      color: #ff5c5c;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+
+    .register-container p {
+      font-size: 14px;
+      margin-top: 15px;
+    }
+
+    .register-container a {
+      color: #00dfd8;
+      text-decoration: none;
+    }
+
+    .register-container a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="register-container">
+    <h2><i class="fas fa-user-plus"></i> Create Account</h2>
+
+    <form onsubmit="handleRegister(); return false;">
+      <div class="input-wrapper">
+        <label for="Name">Enter Your Name</label>
+        <input type="text" id="Name" placeholder="Sansha Ikbal" required />
+      </div>
+      <div class="input-wrapper">
+        <label for="email">Email or Phone</label>
+        <input type="text" id="email" placeholder="you@example.com or 9876543210" required />
+      </div>
+
+      <div class="input-wrapper">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Create password" required />
+      </div>
+
+      <div class="input-wrapper">
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password" id="confirmPassword" placeholder="Confirm password" required />
+      </div>
+
+      <button type="submit" class="neon-button">Register</button>
+      <p id="registerError" class="error"></p>
+      <p>Already registered? <a href="login.html">Login here</a></p>
+    </form>
+  </div>
+
+  <script>
+    function handleRegister() {
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+      const confirmPassword = document.getElementById("confirmPassword").value;
+      const errorMsg = document.getElementById("registerError");
+
+      errorMsg.textContent = "";
+
+      if (!email || !password || !confirmPassword) {
+        errorMsg.textContent = "All fields are required.";
+        return;
+      }
+
+      if (password !== confirmPassword) {
+        errorMsg.textContent = "Passwords do not match.";
+        return;
+      }
+
+      const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      const isPhone = /^[0-9]{10}$/.test(email);
+      if (!isEmail && !isPhone) {
+        errorMsg.textContent = "Enter a valid email or phone number.";
+        return;
+      }
+
+      let users = JSON.parse(localStorage.getItem("users") || "{}");
+
+      if (users[email]) {
+        errorMsg.textContent = "Account already exists.";
+        return;
+      }
+
+      users[email] = password;
+      localStorage.setItem("users", JSON.stringify(users));
+      alert("Registration successful! You can now login.");
+      window.location.href = "login.html";
+    }
+  </script>
+</body>
+</html>

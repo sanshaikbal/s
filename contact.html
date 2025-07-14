@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact | Sansha’s Documents</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script defer src="script.js"></script>
+
+  <script>
+    // Shared login utility
+    function getLoggedInUser() {
+      return JSON.parse(localStorage.getItem("loggedInUser") || sessionStorage.getItem("loggedInUser") || "null");
+    }
+
+    function checkLogin() {
+      const user = getLoggedInUser();
+      if (!user || !user.username) {
+        window.location.href = "login.html";
+        return;
+      }
+
+      // Populate user info dynamically
+      document.addEventListener("DOMContentLoaded", () => {
+        const username = user.username;
+
+        // Header
+        document.getElementById("userDropdown").innerHTML = `👤 ${username} ▼`;
+        document.getElementById("userName").textContent = username;
+        document.getElementById("userEmail").textContent = "📧 " + username;
+        document.getElementById("userEmail").href = "mailto:" + username;
+
+        // Footer
+        document.getElementById("footerName").textContent = username;
+        document.getElementById("footerEmail").textContent = username;
+        document.getElementById("footerEmail").href = "mailto:" + username;
+
+        // Contact form
+        const emailField = document.getElementById("email");
+        const nameField = document.getElementById("name");
+        if (emailField) emailField.value = username;
+        if (nameField) nameField.value = username.split("@")[0];
+      });
+    }
+
+    function logout() {
+      localStorage.removeItem("loggedInUser");
+      sessionStorage.removeItem("loggedInUser");
+      window.location.href = "login.html";
+    }
+  </script>
+</head>
+
+<body onload="checkLogin()">
+
+<!-- Header -->
+<header class="blue-header">
+  <div class="container">
+    <div class="header-content">
+      <div class="logo-title">
+        <h2>📂 Sansha’s Documents</h2>
+        <button class="hamburger" onclick="toggleMobileMenu()">☰</button>
+      </div>
+      <nav class="nav-links" id="mobileNav">
+        <a href="index.html"><i class="fas fa-home"></i> Home</a>
+        <a href="documents.html"><i class="fas fa-folder-open"></i> Documents</a>
+        <a href="profile.html"><i class="fas fa-user"></i> Profile</a>
+        <a href="contact.html" class="active"><i class="fas fa-envelope"></i> Contact</a>
+      </nav>
+      <div class="header-controls">
+        <div class="search-container">
+          <input type="text" id="searchBox" placeholder="Search documents..." />
+        </div>
+        <button id="toggleDark" class="icon-btn">🌓</button>
+        <div class="profile-menu">
+          <button class="profile-btn" onclick="toggleProfileDropdown()" id="userDropdown">👤 Sansha Ikbal ▼</button>
+          <div class="dropdown" id="dropdownMenu">
+            <p><strong id="userName">Sansha Ikbal</strong></p>
+            <p><a href="#" id="userEmail">📧jiosanshaikbal@gmail.com</a></p>
+            <button onclick="logout()">🚪 Logout</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Dark Blurred Background Overlay -->
+<div class="nav-overlay" id="navOverlay"></div>
+
+<!-- Contact Section -->
+<main class="doc-main" id="contactPage">
+  <div class="container">
+    <h2 class="section-title">📬 Get in Touch</h2>
+    <p style="text-align:center; margin-bottom: 30px;">Feel free to send a message. I’ll get back to you as soon as possible.</p>
+    <form class="contact-form" action="https://formspree.io/f/xyzjoavq" method="POST">
+      <div class="form-group">
+        <label for="name">Your Name</label>
+        <input type="text" id="name" name="name" required placeholder="Enter your name" />
+      </div>
+      <div class="form-group">
+        <label for="email">Your Email</label>
+        <input type="email" id="email" name="_replyto" required placeholder="Enter your email" />
+      </div>
+      <div class="form-group">
+        <label for="message">Your Message</label>
+        <textarea id="message" name="message" required placeholder="Write your message here..." rows="5"></textarea>
+      </div>
+      <button type="submit" class="btn-send">📨 Send Message</button>
+    </form>
+  </div>
+</main>
+
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/916294355071" class="whatsapp-float" target="_blank">
+  <img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" alt="Chat" />
+</a>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container footer-content">
+    <p>© 2025 <strong id="footerName">Sansha Ikbal</strong></p>
+    <p>📧 <a href="mailto:sanshaikbal@gmail.com" id="footerEmail">sanshaikbal@gmail.com</a> | 📞 <a href="tel:+916294355071">+91 6294355071</a></p>
+    <div class="social-icons">
+      <a href="https://linkedin.com/in/sansha-ikbal-9b8759192" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a href="https://facebook.com/sanshaikbal.sanu" target="_blank"><i class="fab fa-facebook"></i></a>
+      <a href="https://twitter.com/sanshaikbal" target="_blank"><i class="fab fa-twitter"></i></a>
+      <a href="https://instagram.com/sanshaikbal" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
+    </div>
+  </div>
+</footer>
+
+<canvas id="bgCanvas" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1;"></canvas>
+
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sansha’s Documents</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script defer src="script.js"></script>
+</head>
+<body onload="checkLogin()">
+
+<!-- Header -->
+<header class="blue-header">
+  <div class="container">
+    <div class="header-content">
+      <div class="logo-title">
+        <h2>📂 Sansha’s Documents</h2>
+        <button class="hamburger" onclick="toggleMobileMenu()">☰</button>
+      </div>
+      <nav class="nav-links" id="mobileNav">
+        <a href="index.html"><i class="fas fa-home"></i> Home</a>
+        <a href="documents.html"><i class="fas fa-folder-open"></i> Documents</a>
+        <a href="profile.html"><i class="fas fa-user"></i> Profile</a>
+        <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+      </nav>
+      <div class="header-controls">
+        <div class="search-container">
+          <input type="text" id="searchBox" placeholder="Search documents..." />
+        </div>
+        <button id="toggleDark" class="icon-btn">🌓</button>
+        <div class="profile-menu">
+          <button class="profile-btn" onclick="toggleProfileDropdown()">👤 Sansha ▼</button>
+          <div class="dropdown" id="dropdownMenu">
+            <p><strong>Sansha Ikbal</strong></p>
+            <p><a href="mailto:sanshaikbal@gmail.com">📧 sanshaikbal@gmail.com</a></p>
+            <button onclick="logout()">🚪 Logout</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Dark Blurred Background Overlay -->
+<div class="nav-overlay" id="navOverlay"></div>
+
+<!-- Document Cards Section -->
+<main class="doc-main" id="documents">
+  <div class="container">
+    <div class="toolbar">
+      <h2>📄 My Documents</h2>
+      <button class="btn-add" onclick="window.location.href='add-document.html'">➕ Add New</button>
+    </div>
+    <div class="doc-grid" id="cardContainer">
+      <a class="doc-card" href="doc1.html" data-keywords="cv resume profile"><i class="fas fa-id-badge"></i> My CV <span class="badge new">New</span></a>
+      <a class="doc-card" href="doc2.html" data-keywords="ai artificial intelligence syllabus"><i class="fas fa-brain"></i> AI Syllabus <span class="badge updated">Updated</span></a>
+      <a class="doc-card" href="doc3.html" data-keywords="project report final"><i class="fas fa-project-diagram"></i> Project Report</a>
+      <a class="doc-card" href="doc4.html" data-keywords="marksheet result score"><i class="fas fa-file-alt"></i> Marksheet</a>
+      <a class="doc-card" href="doc5.html" data-keywords="certificate award"><i class="fas fa-certificate"></i> Certificate <span class="badge new">New</span></a>
+      <a class="doc-card" href="doc6.html" data-keywords="notes lecture handout"><i class="fas fa-book"></i> Notes</a>
+    </div>
+  </div>
+</main>
+
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/916294355071" class="whatsapp-float" target="_blank">
+  <img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" alt="Chat" />
+</a>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container footer-content">
+    <p>© 2025 <strong>Sansha Ikbal</strong></p>
+    <p>📧 <a href="mailto:sanshaikbal@gmail.com">sanshaikbal@gmail.com</a> | 📞 <a href="tel:+916294355071">+91 6294355071</a></p>
+    <div class="social-icons">
+      <a href="https://linkedin.com/in/sansha-ikbal-9b8759192" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a href="https://facebook.com/sanshaikbal.sanu" target="_blank"><i class="fab fa-facebook"></i></a>
+      <a href="https://twitter.com/sanshaikbal" target="_blank"><i class="fab fa-twitter"></i></a>
+      <a href="https://instagram.com/sanshaikbal" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
+    </div>
+  </div>
+</footer>
+
+<canvas id="bgCanvas" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1;"></canvas>
+
+</body>
+</html>

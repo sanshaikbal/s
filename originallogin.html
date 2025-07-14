@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login - Sansha’s Documents</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <div id="particles-js"></div>
+
+  <div class="login-container modern-shadow" id="loginBox">
+    <h2><i class="fas fa-lock"></i> Enter Password</h2>
+
+    <form onsubmit="handleLoginFlip(); return false;" class="login-form">
+      <div class="input-wrapper">
+        <label for="passwordInput" class="input-label">Password</label>
+        <input type="password" id="passwordInput" class="password-input" placeholder="Enter your password" oninput="checkStrength()" required />
+        <span class="eye-icon" onclick="togglePassword()" title="Show/Hide Password"><i class="far fa-eye"></i></span>
+      </div>
+
+      <div class="remember-me">
+        <input type="checkbox" id="rememberMe" />
+        <label for="rememberMe">Remember Me</label>
+      </div>
+
+      <button type="submit" id="loginBtn" class="neon-button">Login</button>
+      <div id="spinner" class="spinner" style="display: none;"></div>
+      <p id="errorMsg" class="error"></p>
+    </form>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+</body>
+</html>

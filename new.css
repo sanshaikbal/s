@@ -1,0 +1,79 @@
+/* for add-documents page */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(145deg, #0f2027, #203a43, #2c5364);
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  background-color: rgba(30, 33, 48, 0.95);
+  padding: 40px;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 480px;
+  box-shadow: 0 0 30px rgba(0, 223, 216, 0.3), 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.container h1 {
+  margin-bottom: 20px;
+  text-align: center;
+  color: #00dfd8;
+}
+
+form label {
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  font-weight: 600;
+  color: #ddd;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  background: #f4f4f4;
+  color: #333;
+}
+
+input[type="file"] {
+  background: #fff;
+}
+
+.neon-button {
+  margin-top: 20px;
+  width: 100%;
+  padding: 12px;
+  background: #00dfd8;
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 0 15px #00dfd8, 0 0 25px #00dfd8 inset;
+  transition: background 0.3s ease;
+}
+
+.neon-button:hover {
+  background: #00b8b0;
+  box-shadow: 0 0 25px #00b8b0, 0 0 30px #00b8b0 inset;
+}
+
+.success-msg {
+  margin-top: 20px;
+  color: #00ff9d;
+  text-align: center;
+  font-weight: bold;
+}
+/* project page */
